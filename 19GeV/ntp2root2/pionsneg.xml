@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<job maxFilesPerProcess="1" fileListSyntax="paths"  >
+
+  <command>
+    starpro 
+    ./pionsneg.csh $INPUTFILE0 &gt;&amp; ${JOBID}.log
+  </command>
+
+  <SandBox installer="ZIP">
+    <Package>
+      <File>file:./pionsneg.csh</File>
+      <File>file:./pionsneg.h</File>
+      <File>file:./pionsneg.C</File>
+      <File>file:./</File>
+    </Package>
+  </SandBox>
+
+
+  <input URL="filelist:/star/u/sprastar/data01/ntp2Prof/ntp2ProfPiN/submit/pionsneg.list"/>
+
+  <stdout URL="file:/star/u/sprastar/data05/19GeV/flag/out/$JOBID.out"/>
+  <stderr URL="file:/star/u/sprastar/data05/19GeV/flag/out/$JOBID.err"/>
+
+  <output fromScratch="*.log"  toURL="file:/star/u/sprastar/data05/19GeV/flag/out/" />
+  <output fromScratch="*.root" toURL="file:/star/u/sprastar/data05/19GeV/flag/root/" />
+</job>
+

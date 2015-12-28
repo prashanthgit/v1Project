@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<job maxFilesPerProcess="13" fileListSyntax="paths"  >
+
+  <command>
+    root -l -q -b KaonsNeg.C\(\"$FILELIST\",\"$JOBID\"\) &gt;&amp; ${JOBID}.log
+  </command>
+
+  <SandBox installer="ZIP">
+    <Package>
+      <File>file:./KaonsNeg.C</File>
+      <File>file:./Constants.h</File>
+    </Package>
+  </SandBox>
+
+
+  <input URL="filelist:/star/u/sprastar/v1_u8/11GeV/ntp2root/kaonsneg.list"/>
+
+  <stdout URL="file:/star/u/sprastar/data05/11GeV/flag/out/$JOBID.out"/>
+  <stderr URL="file:/star/u/sprastar/data05/11GeV/flag/out/$JOBID.err"/>
+
+  <output fromScratch="*.log"  toURL="file:/star/u/sprastar/data05/11GeV/flag/out/" />
+  <output fromScratch="*.root" toURL="file:/star/u/sprastar/data05/11GeV/flag/root/" />
+</job>
+

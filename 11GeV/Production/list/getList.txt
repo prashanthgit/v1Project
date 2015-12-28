@@ -1,0 +1,6 @@
+get_file_list.pl -keys events,node,path,filename -cond 'filetype=daq_reco_MuDst,trgsetupname=AuAu11_production,runtype=physics,storage!=HPSS,sanity=1,filename~st_physics,production=P10ih' -limit 0 -onefile > input.list
+
+sort -s -n -r -k1,1 input.list > input_sort.list
+
+
+awk -F"::" '{print "file://"$2$3"/"$4"::"$1}' input_sort.list > input_final_all.list

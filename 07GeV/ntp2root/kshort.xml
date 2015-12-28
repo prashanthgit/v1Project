@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<job maxFilesPerProcess="30" fileListSyntax="paths"  >
+
+  <command>
+    root -l -q -b Kshort.C\(\"$FILELIST\",\"$JOBID\"\) &gt;&amp; ${JOBID}.log
+  </command>
+
+  <SandBox installer="ZIP">
+    <Package>
+      <File>file:./Kshort.C</File>
+      <File>file:./Constants.h</File>
+    </Package>
+  </SandBox>
+
+  <!-- change for BG 
+     f->GetObject("lambda",tree);
+     f->GetObject("lambdaBg",tree);
+  -->
+
+  <input URL="filelist:/star/u/sprastar/v1_u8/07GeV/ntp2root/kshortbg.list"/>
+
+  <stdout URL="file:/star/u/sprastar/data05/07GeV/flag/out/$JOBID.out"/>
+  <stderr URL="file:/star/u/sprastar/data05/07GeV/flag/out/$JOBID.err"/>
+
+  <output fromScratch="*.log"  toURL="file:/star/u/sprastar/data05/07GeV/flag/out/" />
+  <output fromScratch="*.root" toURL="file:/star/u/sprastar/data05/07GeV/flag/root/" />
+</job>
+

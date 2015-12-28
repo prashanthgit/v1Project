@@ -1,0 +1,1 @@
+../../../../StRoot/StStrangeMaker/StStrangeV0.h

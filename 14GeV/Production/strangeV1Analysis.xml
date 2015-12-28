@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<job simulateSubmission ="false" maxEvents="15000" softLimits="true" fileListSyntax="xrootd" >
+  <!--<job simulateSubmission ="false" fileListSyntax="xrootd" filesPerHour="0.2">-->
+   
+
+  <command>
+    starpro 
+    root4star -q -l -b doStrange.C\(100000000000,$INPUTFILECOUNT,\"$FILELIST\",\"$SCRATCH\",\"$JOBID\",19\) &gt;&amp; ${JOBID}.log
+  </command>
+
+  <SandBox installer="ZIP">
+    <Package>
+      <File>file:./doStrange.C</File>
+      <File>file:./StRoot</File>
+      <File>file:./shift14.root</File>
+      <File>file:./.sl64_gcc482</File>
+    </Package>
+  </SandBox>
+
+  <!--<input URL="catalog:star.bnl.gov?filetype=daq_reco_MuDst,trgsetupname=production_15GeV_2014,runtype=physics,storage!=HPSS,sanity=1,runnumber[]15053000-15070021,filename~st_physics,production=P14ii" nFiles="all"/>-->
+  <!--<input URL="filelist:/star/u/sprastar/v1_u8/19GeV/Production/list/input.0.list" />-->
+
+  <stdout URL="file:/star/u/sprastar/data05/14GeV/out/$JOBID.out"/>
+  <stderr URL="file:/star/u/sprastar/data05/14GeV/err/$JOBID.err"/>
+
+  <output fromScratch="*.log"  toURL="file:/star/u/sprastar/data05/14GeV/log/" />
+  <output fromScratch="*.root" toURL="file:/star/u/sprastar/data05/14GeV/tree/" />
+</job>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<job maxFilesPerProcess="10" fileListSyntax="paths"  >
+
+  <command>
+    root -l -q -b Proton.C\(\"$FILELIST\",\"$JOBID\"\) &gt;&amp; ${JOBID}.log
+  </command>
+
+  <SandBox installer="ZIP">
+    <Package>
+      <File>file:./Proton.C</File>
+      <File>file:./Constants.h</File>
+    </Package>
+  </SandBox>
+
+
+  <input URL="filelist:/star/u/sprastar/v1_u8/39GeV/ntp2root/proton.list"/>
+
+  <stdout URL="file:/star/u/sprastar/data01/39GeV/flag/out/$JOBID.out"/>
+  <stderr URL="file:/star/u/sprastar/data01/39GeV/flag/out/$JOBID.err"/>
+
+  <output fromScratch="*.log"  toURL="file:/star/u/sprastar/data01/39GeV/flag/out/" />
+  <output fromScratch="*.root" toURL="file:/star/u/sprastar/data01/39GeV/flag/root/" />
+</job>
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<job maxFilesPerProcess="1" fileListSyntax="paths"  >
+
+  <command>
+    starpro 
+    ./kshort.csh $INPUTFILE0 &gt;&amp; ${JOBID}.log
+  </command>
+
+  <SandBox installer="ZIP">
+    <Package>
+      <File>file:./kshort.csh</File>
+      <File>file:./kshort.h</File>
+      <File>file:./kshort.C</File>
+      <File>file:./</File>
+    </Package>
+  </SandBox>
+
+  <!-- change for BG 
+     f->GetObject("lambda",tree);
+     f->GetObject("lambdaBg",tree);
+  -->
+
+  <input URL="filelist:/star/u/sprastar/v1_u8/19GeV/mkRoot/strange/ntp2flag/kshort.list"/>
+
+  <stdout URL="file:/star/u/sprastar/data05/19GeV/flag/out/$JOBID.out"/>
+  <stderr URL="file:/star/u/sprastar/data05/19GeV/flag/out/$JOBID.err"/>
+
+  <output fromScratch="*.log"  toURL="file:/star/u/sprastar/data05/19GeV/flag/out/" />
+  <output fromScratch="*.root" toURL="file:/star/u/sprastar/data05/19GeV/flag/root/" />
+</job>
+
